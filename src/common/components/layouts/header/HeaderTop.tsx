@@ -26,7 +26,7 @@ const HeaderTop: React.FC = () => {
       className={`fixed z-10 h-[10vh] w-full ${isScrolled && 'border-b-[1px] border-gray-300'}`}
     >
       <div
-        className={`h-full w-full ${isScrolled && 'opacity-70'}`}
+        className={`h-full w-full ${isScrolled && 'opacity-20 blur-xl bg-white'}`}
       ></div>
       <Navigation />
     </header>
