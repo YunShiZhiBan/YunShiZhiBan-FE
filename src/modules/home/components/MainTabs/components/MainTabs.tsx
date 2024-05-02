@@ -9,39 +9,23 @@ const TabLabel = ({ children }: { children: React.ReactNode }) => (
 const MainTabs: React.FC = () => {
   const TABS = [
     {
-      label: (
-        <TabLabel>
-          <Play size={16} />
-          演示
-        </TabLabel>
-      ),
+      label: <TabLabel>演示</TabLabel>,
+      labelIcon: <Play size={16} />,
       children: <>playground</>,
     },
     {
-      label: (
-        <TabLabel>
-          <Rocket size={16} />
-          API
-        </TabLabel>
-      ),
+      label: <TabLabel>API</TabLabel>,
+      labelIcon: <Rocket size={16} />,
       children: <>api</>,
     },
     {
-      label: (
-        <TabLabel>
-          <BookMarked size={16} />
-          用例
-        </TabLabel>
-      ),
+      label: <TabLabel>用例</TabLabel>,
+      labelIcon: <BookMarked size={16} />,
       children: <>example</>,
     },
     {
-      label: (
-        <TabLabel>
-          <FileText size={16} />
-          README
-        </TabLabel>
-      ),
+      label: <TabLabel>README</TabLabel>,
+      labelIcon: <FileText size={16} />,
       children: <>readme</>,
     },
   ];

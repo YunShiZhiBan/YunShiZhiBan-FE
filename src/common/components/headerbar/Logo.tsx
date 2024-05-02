@@ -6,10 +6,7 @@ const HEADER_BG_HEIGHT = 429;
 
 const Logo = () => {
   return (
-    <Link
-      href="/"
-      className="relative left-[2%]"
-    >
+    <Link href="/" className="relative left-[2%]">
       <Image
         src="/logo.png"
         alt="logo"

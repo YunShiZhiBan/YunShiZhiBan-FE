@@ -1,7 +1,7 @@
 'use client';
 
 import { Copy } from 'lucide-react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Button } from '@/common/components/ui/button';
 import {
@@ -19,8 +19,13 @@ const CopyToClipboardButton: React.FC<CopyButtonProps> = ({
   text,
   className,
 }) => {
+  const [isCopyed, setIsCopyed] = useState(false);
   const copyTextToClipboard = useCallback(() => {
     navigator.clipboard.writeText(text);
+    setIsCopyed(true);
+    setTimeout(() => {
+      setIsCopyed(false);
+    }, 3000);
   }, [text]);
 
   return (
@@ -35,8 +40,10 @@ const CopyToClipboardButton: React.FC<CopyButtonProps> = ({
           <Copy className="h-[1.5vh] w-[1.5vh]" />
         </Button>
       </HoverCardTrigger>
-      <HoverCardContent className='bg-black w-auto p-3'>
-        <p className='text-white text-[1.5vh]'>复制模型名称</p>
+      <HoverCardContent className="w-auto bg-black p-3">
+        <p className="text-[1.5vh] text-white">
+          {isCopyed ? '复制成功！' : '复制模型名称'}
+        </p>
       </HoverCardContent>
     </HoverCard>
   );
