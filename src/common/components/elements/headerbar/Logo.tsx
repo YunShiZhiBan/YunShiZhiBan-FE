@@ -6,11 +6,11 @@ const HEADER_BG_HEIGHT = 172;
 const Logo = () => {
   return (
     <Image
-      src="/next.svg"
+      src="/logo.png"
       alt="logo"
       width={HEADER_BG_WIDTH}
       height={HEADER_BG_HEIGHT}
-      className="relative left-[2%] top-[0.5vh] h-[5vh] w-[10%] select-none"
+      className="relative left-[2%] h-[7vh] w-[7vh] select-none"
     />
   );
 };
