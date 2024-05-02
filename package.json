@@ -1,7 +1,19 @@
 {
   "name": "yunshizhiban-fe",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "偶遇华夏 | 两岸木偶文化的创新型传承与弘扬",
   "private": true,
+  "author": "OuYuHuaXia",
+  "contributors": [
+    "BlackishGreen33 <s5460703@gmail.com> (https://www.blackishgreen.link/)"
+  ],
+  "homepage": "https://github.com/YnnShiZhiBan/YnnShiZhiBan-FE",
+  "repository": "https://github.com/YnnShiZhiBan/YnnShiZhiBan-FE",
+  "bugs": {
+    "url": "https://github.com/YnnShiZhiBan/YnnShiZhiBan-FE/issues",
+    "email": "s5460703@gmail.com"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
