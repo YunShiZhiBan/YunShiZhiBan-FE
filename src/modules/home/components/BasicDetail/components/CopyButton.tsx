@@ -35,8 +35,8 @@ const CopyToClipboardButton: React.FC<CopyButtonProps> = ({
           <Copy className="h-[1.5vh] w-[1.5vh]" />
         </Button>
       </HoverCardTrigger>
-      <HoverCardContent className='bg-black w-auto p-3'>
-        <p className='text-white text-[1.5vh]'>复制模型名称</p>
+      <HoverCardContent className="w-auto bg-black p-3">
+        <p className="text-[1.5vh] text-white">复制模型名称</p>
       </HoverCardContent>
     </HoverCard>
   );

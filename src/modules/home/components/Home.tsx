@@ -3,7 +3,7 @@ import MainTabs from './MainTabs';
 
 const Home = () => {
   return (
-    <div className="h-auto w-full px-[8%] py-[2vh] flex flex-col gap-3">
+    <div className="flex h-auto w-full flex-col gap-3 px-[8%] py-[2vh]">
       <BasicDetail />
       <MainTabs />
     </div>
