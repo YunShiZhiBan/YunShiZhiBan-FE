@@ -5,7 +5,7 @@ import { ThemeProvider } from 'next-themes';
 import '@/common/styles/globals.scss';
 
 import Layout from '@/common/components/layouts';
-import StyledComponentsRegistry from '@/common/lib/registry';
+import StyledComponentsRegistry from '@/common/libs/registry';
 import GlobalStyles from '@/common/styles/GlobalStyles';
 
 const inter = Inter({ subsets: ['latin'] });
