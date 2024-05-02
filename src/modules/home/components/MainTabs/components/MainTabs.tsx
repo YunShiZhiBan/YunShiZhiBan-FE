@@ -1,6 +1,7 @@
 import { BookMarked, FileText, Play, Rocket } from 'lucide-react';
 
-import { Tabs } from '@/common/components/elements/Tabs';
+import { Tab, Tabs } from '@/common/components/elements/Tabs';
+import Playground from '@/modules/home/components/Playground';
 
 const TabLabel = ({ children }: { children: React.ReactNode }) => (
   <div className="flex items-center justify-center gap-1.5">{children}</div>
@@ -11,7 +12,11 @@ const MainTabs: React.FC = () => {
     {
       label: <TabLabel>演示</TabLabel>,
       labelIcon: <Play size={16} />,
-      children: <>playground</>,
+      children: (
+        <Tab label="Playground">
+          <Playground />
+        </Tab>
+      ),
     },
     {
       label: <TabLabel>API</TabLabel>,
