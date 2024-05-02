@@ -1,17 +1,23 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
-const HEADER_BG_WIDTH = 325;
-const HEADER_BG_HEIGHT = 172;
+const HEADER_BG_WIDTH = 371;
+const HEADER_BG_HEIGHT = 429;
 
 const Logo = () => {
   return (
-    <Image
-      src="/logo.png"
-      alt="logo"
-      width={HEADER_BG_WIDTH}
-      height={HEADER_BG_HEIGHT}
-      className="relative left-[2%] h-[7vh] w-[7vh] select-none"
-    />
+    <Link
+      href="/"
+      className="relative left-[2%]"
+    >
+      <Image
+        src="/logo.png"
+        alt="logo"
+        width={HEADER_BG_WIDTH}
+        height={HEADER_BG_HEIGHT}
+        className="h-[7vh] w-[7vh] select-none"
+      />
+    </Link>
   );
 };
 export default Logo;
