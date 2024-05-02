@@ -1,8 +1,4 @@
-import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
-
 import { Button } from '@/common/components/ui/button';
-import { useNavigation } from '@/common/hooks/useNavigation';
 
 import MenuItem from './MenuItem';
 
@@ -14,13 +10,6 @@ const Menu_ITEMS = [
 ];
 
 const Menu: React.FC = () => {
-  const { setRoute } = useNavigation();
-  const searchParams = useSearchParams();
-  const search = searchParams.get('search');
-  useEffect(() => {
-    setRoute(search || 'home');
-  }, [search, setRoute]);
-
   return (
     <nav className="absolute right-[10px] flex h-full w-auto items-center">
       <ul className="flex h-full items-center">
