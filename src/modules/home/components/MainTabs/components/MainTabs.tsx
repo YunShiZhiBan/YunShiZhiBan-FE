@@ -2,6 +2,8 @@ import { BookMarked, FileText, Play, Rocket } from 'lucide-react';
 
 import { Tabs } from '@/common/components/elements/Tabs';
 
+import Readme from './Readme';
+
 const TabLabel = ({ children }: { children: React.ReactNode }) => (
   <div className="flex items-center justify-center gap-1.5">{children}</div>
 );
@@ -26,7 +28,7 @@ const MainTabs: React.FC = () => {
     {
       label: <TabLabel>README</TabLabel>,
       labelIcon: <FileText size={16} />,
-      children: <>readme</>,
+      children: <Readme />,
     },
   ];
   return <Tabs tabs={TABS} />;
