@@ -10,7 +10,6 @@ const Menu_ITEMS = [
 ];
 
 const Menu: React.FC = () => {
-
   return (
     <nav className="absolute right-[10px] flex h-full w-auto items-center">
       <ul className="flex h-full items-center">
