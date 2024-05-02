@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <>
-      <div className="relative flex h-dvh flex-col bg-bgDefault">
+      <div className="relative flex h-dvh flex-col">
         <HeaderTop />
         <main className="absolute top-[10vh] w-full flex-1 transition-all duration-300">
           {children}

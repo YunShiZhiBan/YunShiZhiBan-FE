@@ -1,5 +1,11 @@
+import BasicDetail from './BasicDetail';
+
 const Home = () => {
-  return <div className="w-full h-[120vh] text-9xl">123</div>;
+  return (
+    <div className="h-[120vh] w-full px-[8%] py-[2vh]">
+      <BasicDetail />
+    </div>
+  );
 };
 
 export default Home;
