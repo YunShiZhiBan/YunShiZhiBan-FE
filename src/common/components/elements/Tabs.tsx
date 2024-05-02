@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 interface TabProps {
   label: React.ReactNode;
+  labelIcon?: React.ReactNode;
   children: React.ReactNode;
 }
 
@@ -29,7 +30,7 @@ export const Tabs = ({ tabs }: TabsProps) => {
         {tabs.map((tab, index) => (
           <button
             key={index}
-            className={`px-4 py-2 text-center font-medium ${
+            className={`px-4 py-2 text-center font-medium ${tab.labelIcon && `flex items-center gap-1`} ${
               activeTab === index
                 ? 'bg-neutral-500 text-neutral-100 dark:bg-neutral-400 dark:text-neutral-900'
                 : 'bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-400 hover:dark:text-neutral-200'
@@ -42,6 +43,9 @@ export const Tabs = ({ tabs }: TabsProps) => {
             }`}
             onClick={() => handleTabClick(index)}
           >
+            <div className={`${activeTab === index && 'animate-pulse'}`}>
+              {tab.labelIcon}
+            </div>
             {tab.label}
           </button>
         ))}
