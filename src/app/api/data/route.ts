@@ -1,12 +1,12 @@
 import { exec } from 'child_process';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { ChildProcess } from 'node:child_process';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export async function POST(req: NextRequest) {
   if (req.method === 'POST') {
     try {
       // 解析请求体中的JSON数据
-      const data = req.body.data;
+      const data = await req.json();
 
       // 调用Python脚本
       const cmd = `python inference.py --driven_audio ${data.driven_audio} \
@@ -18,29 +18,33 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const childProcess: ChildProcess = exec(cmd);
 
       // 将子进程的stdout和stderr设置为流
-      childProcess.stdout.on('data', (data) => {
+      childProcess.stdout!.on('data', (data) => {
         // 实时发送stdout数据给客户端
-        res.write(data);
+        return new NextResponse(JSON.stringify(data), { status: 200 });
       });
 
-      childProcess.stderr.on('data', (data) => {
+      childProcess.stderr!.on('data', (data) => {
         // 实时发送stderr数据给客户端
-        res.write(data);
+        return new NextResponse(JSON.stringify(data), { status: 200 });
       });
 
       // 当子进程结束时发送结束标记
       childProcess.on('close', (code) => {
-        res.end(`\nProcess exited with code ${code}`);
+        // eslint-disable-next-line no-console
+        console.log('end：', `\nProcess exited with code ${code}`);
+        return new NextResponse(`\nProcess exited with code ${code}`, {
+          status: 200,
+        });
       });
 
       // 处理可能的错误
-      childProcess.on('error', (error) => {
-        res.status(500).json({ error: error.message });
+      childProcess.on('error', () => {
+        return new NextResponse('Internal Error', { status: 500 });
       });
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      return new NextResponse('Internal Error', { status: 500 });
     }
   } else {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return new NextResponse('Method not allowed', { status: 405 });
   }
-};
+}
