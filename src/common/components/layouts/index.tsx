@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         domain: "www.chatbase.co"
       }
     </script>
-    <script src="https://www.chatbase.co/embed.min.js" 
+    <script src="https://www.chatbase.co/embed.min.js"
             chatbotId="637zQZNRXyVYZTiVKTwQe"
             domain="www.chatbase.co"
             defer>
