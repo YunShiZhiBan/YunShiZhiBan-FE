@@ -37,7 +37,6 @@ const formSchema = z.object({
 
 const PlaygroundInput: React.FC = () => {
   const form = useForm<z.infer<typeof formSchema>>({
-    // resolver: zodResolver(formSchema),
     defaultValues: {
       source_image: '',
       driven_audio: '',
@@ -49,11 +48,11 @@ const PlaygroundInput: React.FC = () => {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     const formData = new FormData();
-    Object.keys(values).forEach((key) => {
-      formData.append(key, values[key]);
+    const valuesWithIndexSignature: Record<string, any> = values;
+    Object.keys(valuesWithIndexSignature).forEach((key) => {
+      formData.append(key, valuesWithIndexSignature[key]);
     });
 
     axios
