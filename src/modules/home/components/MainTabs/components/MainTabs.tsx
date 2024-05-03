@@ -1,8 +1,9 @@
-import { BookMarked, FileText, Play, Rocket } from 'lucide-react';
+import { BookMarked, Bot, FileText, Play, Rocket } from 'lucide-react';
 
 import { Tab, Tabs } from '@/common/components/elements/Tabs';
 import Playground from '@/modules/home/components/Playground';
 
+import ChatBot from './ChatBot';
 import Readme from './Readme';
 
 const TabLabel = ({ children }: { children: React.ReactNode }) => (
@@ -34,6 +35,11 @@ const MainTabs: React.FC = () => {
       label: <TabLabel>README</TabLabel>,
       labelIcon: <FileText size={16} />,
       children: <Readme />,
+    },
+    {
+      label: <TabLabel>机器人</TabLabel>,
+      labelIcon: <Bot size={16} />,
+      children: <ChatBot />,
     },
   ];
   return <Tabs tabs={TABS} />;
