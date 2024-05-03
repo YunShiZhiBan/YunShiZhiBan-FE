@@ -1,5 +1,4 @@
 'use client';
-
 import { Download, Settings2 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -7,7 +6,6 @@ import { Button } from '@/common/components/ui/button';
 
 const PlaygroundOutput: React.FC = () => {
   const [data, setData] = useState({});
-
   return (
     <>
       <div className="w-full">
@@ -17,7 +15,8 @@ const PlaygroundOutput: React.FC = () => {
           autoPlay
           controls
           loop
-          style={{ width: 'auto', height: 'auto' }}
+          className="w-full "
+          style={{ height: 'auto' }}
         ></video>
       </div>
       <div className="mt-4 flex flex-col gap-6 ">
