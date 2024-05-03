@@ -34,6 +34,7 @@ const formSchema = z.object({
   ref_pose: z.string().optional(),
   still: z.boolean().optional(),
 });
+
 const PlaygroundInput: React.FC = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     // resolver: zodResolver(formSchema),
