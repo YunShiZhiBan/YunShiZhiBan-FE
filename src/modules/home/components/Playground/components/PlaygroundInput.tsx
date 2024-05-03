@@ -1,5 +1,7 @@
 'use client';
 
+import axios from 'axios';
+import { File, Menu } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -22,7 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/common/components/ui/select';
-import axios from 'axios';
 
 const formSchema = z.object({
   source_image: z.string().optional(),
@@ -49,16 +50,17 @@ const PlaygroundInput: React.FC = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const formData = new FormData();
+    Object.keys(values).forEach((key) => {
+      formData.append(key, values[key]);
+    });
+
     axios
-      .post(
-        '/api/data',
-        { ...values },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
+      .post('/api/inference', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then((response) => {
         console.log(response.data);
       })
@@ -79,11 +81,17 @@ const PlaygroundInput: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                source_image
-                <span style={{ color: 'hsl(10, 71.5%, 50%)' }}>*</span>
-                <span className="ml-1.5" style={{ color: 'hsl(0, 0%, 52.3%)' }}>
-                  file
-                </span>
+                <div className="flex">
+                  <File size={16} className="mr-1.5" />
+                  source_image
+                  <span style={{ color: 'hsl(10, 71.5%, 50%)' }}>*</span>
+                  <span
+                    className="ml-1.5"
+                    style={{ color: 'hsl(0, 0%, 52.3%)' }}
+                  >
+                    file
+                  </span>
+                </div>
               </FormLabel>
               <FormControl>
                 <Input type="file" id="source_image" {...field} />
@@ -101,11 +109,17 @@ const PlaygroundInput: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                driven_audio
-                <span style={{ color: 'hsl(10, 71.5%, 50%)' }}>*</span>
-                <span className="ml-1.5" style={{ color: 'hsl(0, 0%, 52.3%)' }}>
-                  file
-                </span>
+                <div className="flex">
+                  <File size={16} className="mr-1.5" />
+                  driven_audio
+                  <span style={{ color: 'hsl(10, 71.5%, 50%)' }}>*</span>
+                  <span
+                    className="ml-1.5"
+                    style={{ color: 'hsl(0, 0%, 52.3%)' }}
+                  >
+                    file
+                  </span>
+                </div>
               </FormLabel>
               <FormControl>
                 <Input type="file" id="driven_audio" {...field} />
@@ -123,10 +137,16 @@ const PlaygroundInput: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                enhancer
-                <span className="ml-1.5" style={{ color: 'hsl(0, 0%, 52.3%)' }}>
-                  string
-                </span>
+                <div className="flex">
+                  <Menu size={16} className="mr-1.5" />
+                  enhancer
+                  <span
+                    className="ml-1.5"
+                    style={{ color: 'hsl(0, 0%, 52.3%)' }}
+                  >
+                    string
+                  </span>
+                </div>
               </FormLabel>
               <FormControl>
                 <Select
@@ -156,10 +176,16 @@ const PlaygroundInput: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                preprocess
-                <span className="ml-1.5" style={{ color: 'hsl(0, 0%, 52.3%)' }}>
-                  string
-                </span>
+                <div className="flex">
+                  <Menu size={16} className="mr-1.5" />
+                  preprocess
+                  <span
+                    className="ml-1.5"
+                    style={{ color: 'hsl(0, 0%, 52.3%)' }}
+                  >
+                    string
+                  </span>
+                </div>
               </FormLabel>
               <FormControl>
                 <Select
@@ -189,10 +215,16 @@ const PlaygroundInput: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                ref_eyeblink
-                <span className="ml-1.5" style={{ color: 'hsl(0, 0%, 52.3%)' }}>
-                  file
-                </span>
+                <div className="flex">
+                  <File size={16} className="mr-1.5" />
+                  ref_eyeblink
+                  <span
+                    className="ml-1.5"
+                    style={{ color: 'hsl(0, 0%, 52.3%)' }}
+                  >
+                    file
+                  </span>
+                </div>
               </FormLabel>
               <FormControl>
                 <Input type="file" id="ref_eyeblink" {...field} />
@@ -210,10 +242,16 @@ const PlaygroundInput: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                ref_pose
-                <span className="ml-1.5" style={{ color: 'hsl(0, 0%, 52.3%)' }}>
-                  file
-                </span>
+                <div className="flex">
+                  <File size={16} className="mr-1.5" />
+                  ref_pose
+                  <span
+                    className="ml-1.5"
+                    style={{ color: 'hsl(0, 0%, 52.3%)' }}
+                  >
+                    file
+                  </span>
+                </div>
               </FormLabel>
               <FormControl>
                 <Input type="file" id="ref_pose" {...field} />
