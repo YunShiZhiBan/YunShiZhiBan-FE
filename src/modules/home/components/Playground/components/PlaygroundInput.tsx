@@ -1,6 +1,5 @@
 'use client';
 
-import axios from 'axios';
 import { File, Menu } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -24,6 +23,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/common/components/ui/select';
+import { CheckedState } from '@radix-ui/react-checkbox';
+import axios from 'axios';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 const formSchema = z.object({
   source_image: z.string().optional(),
@@ -48,13 +50,24 @@ const PlaygroundInput: React.FC = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData();
-    const valuesWithIndexSignature: Record<string, any> = values;
-    Object.keys(valuesWithIndexSignature).forEach((key) => {
-      formData.append(key, valuesWithIndexSignature[key]);
-    });
+  const [formData, setFormData] = useState(new FormData());
+  useEffect(() => {
+    // 在组件加载时创建并设置初始值
+    const initialFormData = createInitialFormData();
+    setFormData(initialFormData);
+  }, []);
 
+  // 创建初始的 FormData 对象
+  const createInitialFormData = () => {
+    const initialFormData = new FormData();
+    initialFormData.append('enhancer', 'gfpgan');
+    initialFormData.append('preprocess', 'full');
+    initialFormData.append('still', 'true');
+    return initialFormData;
+  };
+
+  function onSubmit() {
+    console.log(formData.values());
     axios
       .post('/api/inference', formData, {
         headers: {
@@ -72,13 +85,53 @@ const PlaygroundInput: React.FC = () => {
       });
   }
 
+  // 处理文件上传
+  const handleFileUpload = (
+    event: ChangeEvent<HTMLInputElement>,
+    fieldName: string
+  ) => {
+    const file = event.target?.files?.[0];
+    if (file) {
+      setFormData((prev) => {
+        if (prev.has(fieldName)) {
+          prev.set(fieldName, file);
+        } else {
+          prev.append(fieldName, file);
+        }
+        return prev;
+      });
+    }
+  };
+
+  // 处理
+  const handleSelect = (event: string, fieldName: string) => {
+    setFormData((prev) => {
+      if (prev.has(fieldName)) {
+        prev.set(fieldName, event);
+      } else {
+        prev.append(fieldName, event);
+      }
+      return prev;
+    });
+  };
+  const handleCheck = (event: CheckedState, fieldName: string) => {
+    setFormData((prev) => {
+      if (prev.has(fieldName)) {
+        prev.set(fieldName, event.toString());
+      } else {
+        prev.append(fieldName, event.toString());
+      }
+      return prev;
+    });
+  };
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form className="space-y-8">
         <FormField
           control={form.control}
           name="source_image"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel>
                 <div className="flex">
@@ -94,7 +147,11 @@ const PlaygroundInput: React.FC = () => {
                 </div>
               </FormLabel>
               <FormControl>
-                <Input type="file" id="source_image" {...field} />
+                <Input
+                  type="file"
+                  id="source_image"
+                  onChange={(event) => handleFileUpload(event, 'source_image')}
+                />
               </FormControl>
               <FormDescription>
                 Upload the source image, it can be video.mp4 or picture.png
@@ -106,7 +163,7 @@ const PlaygroundInput: React.FC = () => {
         <FormField
           control={form.control}
           name="driven_audio"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel>
                 <div className="flex">
@@ -122,7 +179,11 @@ const PlaygroundInput: React.FC = () => {
                 </div>
               </FormLabel>
               <FormControl>
-                <Input type="file" id="driven_audio" {...field} />
+                <Input
+                  type="file"
+                  id="driven_audio"
+                  onChange={(event) => handleFileUpload(event, 'driven_audio')}
+                />
               </FormControl>
               <FormDescription>
                 Upload the driven audio, accepts .wav and .mp4 file
@@ -150,7 +211,7 @@ const PlaygroundInput: React.FC = () => {
               </FormLabel>
               <FormControl>
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(event) => handleSelect(event, 'enhancer')}
                   defaultValue={field.value}
                 >
                   <FormControl>
@@ -189,7 +250,7 @@ const PlaygroundInput: React.FC = () => {
               </FormLabel>
               <FormControl>
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(event) => handleSelect(event, 'preprocess')}
                   defaultValue={field.value}
                 >
                   <FormControl>
@@ -212,7 +273,7 @@ const PlaygroundInput: React.FC = () => {
         <FormField
           control={form.control}
           name="ref_eyeblink"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel>
                 <div className="flex">
@@ -227,7 +288,11 @@ const PlaygroundInput: React.FC = () => {
                 </div>
               </FormLabel>
               <FormControl>
-                <Input type="file" id="ref_eyeblink" {...field} />
+                <Input
+                  type="file"
+                  id="ref_eyeblink"
+                  onChange={(event) => handleFileUpload(event, 'ref_eyeblink')}
+                />
               </FormControl>
               <FormDescription>
                 path to reference video providing eye blinking
@@ -239,7 +304,7 @@ const PlaygroundInput: React.FC = () => {
         <FormField
           control={form.control}
           name="ref_pose"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel>
                 <div className="flex">
@@ -254,7 +319,11 @@ const PlaygroundInput: React.FC = () => {
                 </div>
               </FormLabel>
               <FormControl>
-                <Input type="file" id="ref_pose" {...field} />
+                <Input
+                  type="file"
+                  id="ref_pose"
+                  onChange={(event) => handleFileUpload(event, 'ref_pose')}
+                />
               </FormControl>
               <FormDescription>
                 path to reference video providing pose
@@ -271,7 +340,10 @@ const PlaygroundInput: React.FC = () => {
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={field.onChange}
+                  onCheckedChange={(event) => {
+                    field.onChange(event);
+                    handleCheck(event, 'still');
+                  }}
                 />
               </FormControl>
               <FormLabel className="ml-1.5">
@@ -288,7 +360,9 @@ const PlaygroundInput: React.FC = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="button" onClick={onSubmit}>
+          Submit
+        </Button>
       </form>
     </Form>
   );
