@@ -22,9 +22,9 @@ const MainTabs: React.FC = () => {
       ),
     },
     {
-      label: <TabLabel>API</TabLabel>,
+      label: <TabLabel>资源</TabLabel>,
       labelIcon: <Rocket size={16} />,
-      children: <>api</>,
+      children: <>资源</>,
     },
     {
       label: <TabLabel>用例</TabLabel>,
