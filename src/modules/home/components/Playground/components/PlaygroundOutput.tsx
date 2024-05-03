@@ -1,10 +1,13 @@
 'use client';
-import { Button } from '@/common/components/ui/button';
+
 import { Download, Settings2 } from 'lucide-react';
 import { useState } from 'react';
 
+import { Button } from '@/common/components/ui/button';
+
 const PlaygroundOutput: React.FC = () => {
   const [data, setData] = useState({});
+
   return (
     <>
       <div className="w-full">

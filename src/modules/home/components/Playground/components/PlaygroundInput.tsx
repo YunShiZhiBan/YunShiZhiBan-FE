@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -22,7 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/common/components/ui/select';
-import axios from 'axios';
 
 const formSchema = z.object({
   source_image: z.string().optional(),
@@ -33,6 +33,7 @@ const formSchema = z.object({
   ref_pose: z.string().optional(),
   still: z.boolean().optional(),
 });
+
 const PlaygroundInput: React.FC = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     // resolver: zodResolver(formSchema),
