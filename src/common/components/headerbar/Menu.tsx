@@ -5,7 +5,7 @@ import MenuItem from './MenuItem';
 
 const Menu_ITEMS = [
   { href: '/', value: '演示' },
-  { href: '/api', value: 'API' },
+  { href: '/api', value: '资源' },
   { href: '/examples', value: '用例' },
   { href: '/readme', value: 'README' },
 ];
