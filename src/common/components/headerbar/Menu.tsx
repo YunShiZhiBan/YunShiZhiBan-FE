@@ -4,11 +4,11 @@ import { ModeToggle } from '../elements/ModeToggle';
 import MenuItem from './MenuItem';
 
 const Menu_ITEMS = [
-  { href: '/', value: '演示' },
-  { href: '/api', value: '资源' },
-  { href: '/examples', value: '用例' },
-  { href: '/readme', value: 'README' },
-  { href: '/robot', value: '机器人' },
+  { nav: 0, value: '演示' },
+  { nav: 1, value: '资源' },
+  { nav: 2, value: '用例' },
+  { nav: 3, value: 'README' },
+  { nav: 4, value: '机器人' },
 ];
 
 const Menu: React.FC = () => {
@@ -17,7 +17,7 @@ const Menu: React.FC = () => {
       <nav className="relative right-[100px] flex h-full items-center">
         <ul className="flex h-full items-center">
           {Menu_ITEMS.map((item, index) => (
-            <MenuItem key={index} href={item.href} value={item.value} />
+            <MenuItem key={index} nav={item.nav} value={item.value} />
           ))}
         </ul>
       </nav>

@@ -1,25 +1,27 @@
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+
+import { useNavigation } from '@/common/hooks/useNavigation';
 
 interface MenuItemProps {
-  href: string;
+  nav: number;
   value: string;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ href, value }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ nav, value }) => {
+  const { setNavigation } = useNavigation();
+
   return (
     <motion.li
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
       className="h-full w-auto px-[5%] text-center"
     >
-      <Link
-        href={href}
-        passHref
-        className="flex h-full items-center justify-center text-[1.6vh] text-gray-500 hover:text-black hover:dark:text-white text-nowrap"
+      <button
+        className="flex h-full items-center justify-center text-nowrap text-[1.6vh] text-gray-500 hover:text-black hover:dark:text-white"
+        onClick={() => setNavigation(nav)}
       >
         {value}
-      </Link>
+      </button>
     </motion.li>
   );
 };

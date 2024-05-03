@@ -3,6 +3,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
+import { useNavigation } from '@/common/hooks/useNavigation';
+
 interface TabProps {
   label: React.ReactNode;
   labelIcon?: React.ReactNode;
@@ -70,10 +72,10 @@ const TabItem: React.FC<TabsItemProps> = ({
 };
 
 export const Tabs = ({ tabs }: TabsProps) => {
-  const [activeTab, setActiveTab] = useState(0);
+  const { currentNavigation, setNavigation } = useNavigation();
 
   const handleTabClick = (index: number) => {
-    setActiveTab(index);
+    setNavigation(index);
   };
 
   return (
@@ -85,7 +87,7 @@ export const Tabs = ({ tabs }: TabsProps) => {
             tab={tab}
             index={index}
             tabs={tabs}
-            activeTab={activeTab}
+            activeTab={currentNavigation}
             handleTabClick={handleTabClick}
           />
         ))}
@@ -93,13 +95,13 @@ export const Tabs = ({ tabs }: TabsProps) => {
       <div className="rounded border px-4 py-8 dark:border-neutral-800 sm:px-8">
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeTab}
+            key={currentNavigation}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
             transition={{ duration: 0.5 }}
           >
-            {tabs[activeTab].children}
+            {tabs[currentNavigation].children}
           </motion.div>
         </AnimatePresence>
       </div>
