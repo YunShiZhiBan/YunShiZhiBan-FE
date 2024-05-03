@@ -1,4 +1,4 @@
-import PlaygroundInput from '@/modules/home/components/Playground/components/PlaygroundInput';
+import PlaygroundInput from './PlaygroundInput';
 
 const Input = () => {
   return (

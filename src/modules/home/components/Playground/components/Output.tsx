@@ -1,4 +1,4 @@
-import PlaygroundOutput from '@/modules/home/components/Playground/components/PlaygroundOutput';
+import PlaygroundOutput from './PlaygroundOutput';
 
 const Output = () => {
   return (

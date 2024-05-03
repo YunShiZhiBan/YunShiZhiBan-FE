@@ -1,6 +1,7 @@
 import { Separator } from '@/common/components/ui/separator';
-import Input from '@/modules/home/components/Playground/components/Input';
-import Output from '@/modules/home/components/Playground/components/Output';
+
+import Input from './Input';
+import Output from './Output';
 
 const Playground: React.FC = () => {
   return (
@@ -11,4 +12,5 @@ const Playground: React.FC = () => {
     </div>
   );
 };
+
 export default Playground;
