@@ -5,7 +5,7 @@ interface ImageProps {
 }
 
 const ImageSource: React.FC<ImageProps> = ({ type }) => {
-  const CharacterImages = ['001.png'];
+  const CharacterImages = ['001.png', '002.png'];
   const BackgroundImages = ['001.jpg', '002.jpg'];
 
   return (

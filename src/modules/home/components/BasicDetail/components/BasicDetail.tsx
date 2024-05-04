@@ -1,4 +1,4 @@
-import { FileText, Github, Globe, Rocket, Scale } from 'lucide-react';
+import { Github, Globe, Scale } from 'lucide-react';
 
 import {
   Avatar,
