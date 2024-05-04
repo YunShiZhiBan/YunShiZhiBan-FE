@@ -37,7 +37,11 @@ const formSchema = z.object({
   still: z.boolean().optional(),
 });
 
-const PlaygroundInput: React.FC = () => {
+interface InputProps {
+  changeValue: () => void;
+}
+
+const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
       source_image: '',
@@ -51,6 +55,7 @@ const PlaygroundInput: React.FC = () => {
   });
 
   const [formData, setFormData] = useState(new FormData());
+  const [logs, setLogs] = useState<string[]>([]);
   useEffect(() => {
     // 在组件加载时创建并设置初始值
     const initialFormData = createInitialFormData();
@@ -66,6 +71,23 @@ const PlaygroundInput: React.FC = () => {
     return initialFormData;
   };
 
+  // WebSocket 连接
+  useEffect(() => {
+    const socket = new WebSocket('ws://localhost:6006/ws');
+    socket.onopen = () => {
+      console.log('WebSocket 连接已建立');
+    };
+    socket.onmessage = (event) => {
+      setLogs((prevLogs) => [...prevLogs, event.data]);
+    };
+    socket.onclose = () => {
+      console.log('WebSocket 连接已关闭');
+    };
+    return () => {
+      socket.close();
+    };
+  }, []);
+
   function onSubmit() {
     console.log(formData.values());
     axios
@@ -76,6 +98,7 @@ const PlaygroundInput: React.FC = () => {
       })
       .then((response) => {
         console.log(response.data);
+        changeValue();
       })
       .catch((error) => {
         console.error(

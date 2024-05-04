@@ -1,10 +1,14 @@
 import PlaygroundOutput from './PlaygroundOutput';
 
-const Output = () => {
+interface OutputProps {
+  value: number;
+}
+
+const Output: React.FC<OutputProps> = ({ value }) => {
   return (
     <div className="w-1/2">
       <p className="text-2xl">Output</p>
-      <PlaygroundOutput></PlaygroundOutput>
+      <PlaygroundOutput value={value}></PlaygroundOutput>
     </div>
   );
 };
