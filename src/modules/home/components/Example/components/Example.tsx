@@ -16,7 +16,7 @@ const Example: React.FC = () => {
   return (
     <div className="flex">
       <Input changeValue={changeValue}></Input>
-      <Separator orientation="vertical" className="ml-12 mr-12 h-screen" />
+      <Separator orientation="vertical" className="ml-12 mr-12 h-[112vh]" />
       <Output value={value}></Output>
     </div>
   );

@@ -54,7 +54,7 @@ const PlaygroundOutput: React.FC<OutputProps> = ({ value }) => {
     <>
       <div className="w-full">
         <video
-          src={videoData}
+          src='/video/example.mp4'
           preload="auto"
           autoPlay
           controls

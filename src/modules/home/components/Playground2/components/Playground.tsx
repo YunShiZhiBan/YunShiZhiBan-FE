@@ -16,7 +16,7 @@ const Playground: React.FC = () => {
   return (
     <div className="flex">
       <Input changeValue={changeValue}></Input>
-      <Separator orientation="vertical" className="ml-12 mr-12 h-screen" />
+      <Separator orientation="vertical" className="ml-12 mr-12 h-[110vh]" />
       <Output value={value}></Output>
     </div>
   );
