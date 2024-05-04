@@ -5,7 +5,7 @@ import { FileText } from 'lucide-react';
 import { Button } from '@/common/components/ui/button';
 
 const PPTSource: React.FC = () => {
-  const Files = ['document (1).pdf'];
+  const Files = ['document (1).pdf','document (2).pdf','document (3).pdf'];
 
   const handleOpenPdf = (file: string) => {
     const pdfUrl = `/powerpoint/${file}`;
