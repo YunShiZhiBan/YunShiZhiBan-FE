@@ -13,7 +13,7 @@ const PPTSource: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="flex gap-2 py-2">
       {Files.map((file, index) => (
         <Button
           key={index}
@@ -24,7 +24,7 @@ const PPTSource: React.FC = () => {
           {file}
         </Button>
       ))}
-    </>
+    </div>
   );
 };
 
