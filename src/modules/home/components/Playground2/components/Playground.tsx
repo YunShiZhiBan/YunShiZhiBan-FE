@@ -1,7 +1,9 @@
 'use client';
-import { Separator } from '@/common/components/ui/separator';
 
 import { useState } from 'react';
+
+import { Separator } from '@/common/components/ui/separator';
+
 import Input from './Input';
 import Output from './Output';
 

@@ -1,10 +1,10 @@
 'use client';
 
+import axios from 'axios';
 import { Download } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/common/components/ui/button';
-import axios from 'axios';
 
 interface OutputProps {
   value: number;
