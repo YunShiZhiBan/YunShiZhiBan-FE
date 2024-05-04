@@ -7,6 +7,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import AudioSource from '@/common/components/elements/AudioSource';
 import ImageSource from '@/common/components/elements/ImageSource';
 import PPTSource from '@/common/components/elements/PPTSource';
 import { Checkbox } from '@/common/components/ui/checkbox';
@@ -26,7 +27,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/common/components/ui/select';
-import AudioSource from '@/common/components/elements/AudioSource';
 
 const formSchema = z.object({
   background_image: z.string().optional(),
