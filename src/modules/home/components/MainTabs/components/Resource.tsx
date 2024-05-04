@@ -5,9 +5,9 @@ import {
   AccordionTrigger,
 } from '@/common/components/ui/accordion';
 
-import AudioSource from './AudioSource';
-import ImageSource from './ImageSource';
-import PPTSource from './PPTSource';
+import AudioSource from '@/common/components/elements/AudioSource';
+import ImageSource from '@/common/components/elements/ImageSource';
+import PPTSource from '@/common/components/elements/PPTSource';
 
 const Resource: React.FC = () => {
   return (
@@ -33,7 +33,7 @@ const Resource: React.FC = () => {
           <p className="text-2xl">PPT PowerPoint</p>
         </AccordionTrigger>
         <AccordionContent>
-          <PPTSource />
+          <PPTSource type="Resource" />
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-4">
@@ -41,7 +41,7 @@ const Resource: React.FC = () => {
           <p className="text-2xl">音频 audio</p>
         </AccordionTrigger>
         <AccordionContent>
-          <AudioSource />
+          <AudioSource type="Resource" />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

@@ -1,15 +1,19 @@
 'use client';
 
+import { CheckedState } from '@radix-ui/react-checkbox';
+import axios from 'axios';
 import { File, Menu } from 'lucide-react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/common/components/ui/button';
+import AudioSource from '@/common/components/elements/AudioSource';
+import ImageSource from '@/common/components/elements/ImageSource';
+import PPTSource from '@/common/components/elements/PPTSource';
 import { Checkbox } from '@/common/components/ui/checkbox';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,9 +27,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/common/components/ui/select';
-import { CheckedState } from '@radix-ui/react-checkbox';
-import axios from 'axios';
-import { ChangeEvent, useEffect, useState } from 'react';
 
 const formSchema = z.object({
   background_image: z.string().optional(),
@@ -174,17 +175,8 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                 </div>
               </FormLabel>
               <FormControl>
-                <Input
-                  type="file"
-                  id="source_image"
-                  onChange={(event) =>
-                    handleFileUpload(event, 'background_image')
-                  }
-                />
+                <ImageSource type="ExampleBackground" />
               </FormControl>
-              <FormDescription>
-                {/*Upload the source image, it can be video.mp4 or picture.png*/}
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -208,15 +200,8 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                 </div>
               </FormLabel>
               <FormControl>
-                <Input
-                  type="file"
-                  id="source_image"
-                  onChange={(event) => handleFileUpload(event, 'source_pdf')}
-                />
+                <PPTSource type="Example" />
               </FormControl>
-              <FormDescription>
-                {/*Upload the source image, it can be video.mp4 or picture.png*/}
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -240,15 +225,8 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                 </div>
               </FormLabel>
               <FormControl>
-                <Input
-                  type="file"
-                  id="source_image"
-                  onChange={(event) => handleFileUpload(event, 'source_image')}
-                />
+                <ImageSource type="ExampleCharacter" />
               </FormControl>
-              <FormDescription>
-                Upload the source image, it can be video.mp4 or picture.png
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -272,15 +250,8 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                 </div>
               </FormLabel>
               <FormControl>
-                <Input
-                  type="file"
-                  id="driven_audio"
-                  onChange={(event) => handleFileUpload(event, 'driven_audio')}
-                />
+                <AudioSource type="Example" />
               </FormControl>
-              <FormDescription>
-                Upload the driven audio, accepts .wav and .mp4 file
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -306,6 +277,7 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                 <Select
                   onValueChange={(event) => handleSelect(event, 'enhancer')}
                   defaultValue={field.value}
+                  disabled
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -319,7 +291,6 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                   </SelectContent>
                 </Select>
               </FormControl>
-              <FormDescription>Choose a face enhancer</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -345,6 +316,7 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                 <Select
                   onValueChange={(event) => handleSelect(event, 'preprocess')}
                   defaultValue={field.value}
+                  disabled
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -358,7 +330,6 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                   </SelectContent>
                 </Select>
               </FormControl>
-              <FormDescription>how to preprocess the images</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -387,9 +358,6 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                   onChange={(event) => handleFileUpload(event, 'ref_eyeblink')}
                 />
               </FormControl>
-              <FormDescription>
-                path to reference video providing eye blinking
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -418,9 +386,6 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                   onChange={(event) => handleFileUpload(event, 'ref_pose')}
                 />
               </FormControl>
-              <FormDescription>
-                path to reference video providing pose
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -437,6 +402,7 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                     field.onChange(event);
                     handleCheck(event, 'still');
                   }}
+                  disabled
                 />
               </FormControl>
               <FormLabel className="ml-1.5">
@@ -445,17 +411,10 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
                   boolean
                 </span>
               </FormLabel>
-              <FormDescription>
-                can crop back to the original videos for the full body aniamtion
-                when preprocess is full
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="button" onClick={onSubmit}>
-          Submit
-        </Button>
       </form>
     </Form>
   );

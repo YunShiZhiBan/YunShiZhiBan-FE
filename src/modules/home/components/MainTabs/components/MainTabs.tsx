@@ -5,9 +5,9 @@ import { Tab, Tabs } from '@/common/components/elements/Tabs';
 import Example from '../../Example';
 import Playground from '../../Playground';
 import Playground2 from '../../Playground2';
-import Resource from '../../Resource';
 import ChatBot from './ChatBot';
 import Readme from './Readme';
+import Resource from './Resource';
 
 const TabLabel = ({ children }: { children: React.ReactNode }) => (
   <div className="flex items-center justify-center gap-1.5">{children}</div>
