@@ -2,13 +2,14 @@ import createMDX from '@next/mdx';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export',
+  output: 'export',
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
   },
   swcMinify: true,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
