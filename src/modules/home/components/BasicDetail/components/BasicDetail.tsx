@@ -41,15 +41,15 @@ const BasicDetail: React.FC = () => {
           <Globe className="h-[1.5vh] w-[1.5vh]" />
           Public
         </Badge>
-        <Badge
+        {/* <Badge
           variant="secondary"
           className="flex gap-1 border-[1px] border-gray-600 bg-gray-200 text-[1.5vh] font-normal text-gray-700"
         >
           <Rocket className="h-[1.5vh] w-[1.5vh]" />
           11.8K runs
-        </Badge>
+        </Badge> */}
         <RepositoryLink title="GitHub" Icon={Github} href="/github" />
-        <RepositoryLink title="Paper" Icon={FileText} href="/paper" />
+        {/* <RepositoryLink title="Paper" Icon={FileText} href="/paper" /> */}
         <RepositoryLink title="License" Icon={Scale} href="/license" />
       </div>
     </div>
