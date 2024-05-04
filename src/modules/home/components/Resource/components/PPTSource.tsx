@@ -14,17 +14,19 @@ const PPTSource: React.FC = () => {
 
   return (
     <div className="flex gap-2 py-2">
-      {Files.map((file, index) => (
-        index < 3 && (
-        <Button
-          key={index}
-          onClick={() => handleOpenPdf(file)}
-          className="gap-1"
-        >
-          <FileText />
-          {file}
-        </Button>)
-      ))}
+      {Files.map(
+        (file, index) =>
+          index < 3 && (
+            <Button
+              key={index}
+              onClick={() => handleOpenPdf(file)}
+              className="gap-1"
+            >
+              <FileText />
+              {file}
+            </Button>
+          )
+      )}
     </div>
   );
 };
