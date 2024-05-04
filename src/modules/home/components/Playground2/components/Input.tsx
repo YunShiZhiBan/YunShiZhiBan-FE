@@ -12,4 +12,5 @@ const Input: React.FC<InputProps> = ({ changeValue }) => {
     </div>
   );
 };
+
 export default Input;
