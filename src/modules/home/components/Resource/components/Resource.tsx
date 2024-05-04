@@ -1,15 +1,7 @@
-'use client';
-
 import ImageSource from './ImageSource';
+import PPTSource from './PPTSource';
 
-type ResourceProps = {};
-
-const Resource: React.FC<ResourceProps> = () => {
-  const handleOpenPdf = () => {
-    const pdfUrl = '/powerpoint/document (1).pdf';
-    window.open(pdfUrl, '_blank');
-  };
-
+const Resource: React.FC = () => {
   return (
     <div>
       <p className="text-2xl">人物 character</p>
@@ -22,7 +14,7 @@ const Resource: React.FC<ResourceProps> = () => {
       </div>
       <p className="text-2xl">PPT PowerPoint</p>
       <div className="flex gap-2 py-2">
-        <button onClick={() => handleOpenPdf()}>打开PDF</button>
+        <PPTSource />
       </div>
       <p className="text-2xl">音频 audio</p>
       <div className="flex gap-2 py-2">
