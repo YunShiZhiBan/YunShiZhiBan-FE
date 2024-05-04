@@ -1,14 +1,12 @@
 'use client';
 
-import Image from 'next/image';
+import ImageSource from './ImageSource';
 
 type ResourceProps = {};
 
 const Resource: React.FC<ResourceProps> = () => {
   const handleOpenPdf = () => {
-    // 假设你的PDF文件路径是 '/pdf/sample.pdf'
     const pdfUrl = '/powerpoint/document (1).pdf';
-    // 使用 window.open 打开PDF文件
     window.open(pdfUrl, '_blank');
   };
 
@@ -16,27 +14,11 @@ const Resource: React.FC<ResourceProps> = () => {
     <div>
       <p className="text-2xl">人物 character</p>
       <div className="flex gap-2 py-2">
-        <Image
-          src="/images/character/001.png"
-          width={200}
-          height={200}
-          alt={'character/001'}
-        />
+        <ImageSource type="CharacterImages" />
       </div>
       <p className="text-2xl">背景 background</p>
       <div className="flex gap-2 py-2">
-        <Image
-          src="/images/background/001.jpg"
-          width={200}
-          height={200}
-          alt={'background/001'}
-        />
-        <Image
-          src="/images/background/002.jpg"
-          width={200}
-          height={200}
-          alt={'background/002'}
-        />
+        <ImageSource type="BackgroundImages" />
       </div>
       <p className="text-2xl">PPT PowerPoint</p>
       <div className="flex gap-2 py-2">
