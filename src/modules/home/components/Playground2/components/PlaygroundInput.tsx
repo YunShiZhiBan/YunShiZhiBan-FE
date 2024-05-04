@@ -28,6 +28,8 @@ import axios from 'axios';
 import { ChangeEvent, useEffect, useState } from 'react';
 
 const formSchema = z.object({
+  background_image: z.string().optional(),
+  source_pdf: z.string().optional(),
   source_image: z.string().optional(),
   driven_audio: z.string().optional(),
   enhancer: z.string().optional(),
@@ -44,6 +46,8 @@ interface InputProps {
 const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
+      background_image: '',
+      source_pdf: '',
       source_image: '',
       driven_audio: '',
       enhancer: 'gfpgan',
@@ -91,7 +95,7 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
   function onSubmit() {
     console.log(formData.values());
     axios
-      .post('/api/inference', formData, {
+      .post('/api/ppt', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -151,6 +155,72 @@ const PlaygroundInput: React.FC<InputProps> = ({ changeValue }) => {
   return (
     <Form {...form}>
       <form className="space-y-8">
+        <FormField
+          control={form.control}
+          name="background_image"
+          render={() => (
+            <FormItem>
+              <FormLabel>
+                <div className="flex">
+                  <File size={16} className="mr-1.5" />
+                  background_image
+                  <span style={{ color: 'hsl(10, 71.5%, 50%)' }}>*</span>
+                  <span
+                    className="ml-1.5"
+                    style={{ color: 'hsl(0, 0%, 52.3%)' }}
+                  >
+                    file
+                  </span>
+                </div>
+              </FormLabel>
+              <FormControl>
+                <Input
+                  type="file"
+                  id="source_image"
+                  onChange={(event) =>
+                    handleFileUpload(event, 'background_image')
+                  }
+                />
+              </FormControl>
+              <FormDescription>
+                {/*Upload the source image, it can be video.mp4 or picture.png*/}
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="source_pdf"
+          render={() => (
+            <FormItem>
+              <FormLabel>
+                <div className="flex">
+                  <File size={16} className="mr-1.5" />
+                  source_pdf
+                  <span style={{ color: 'hsl(10, 71.5%, 50%)' }}>*</span>
+                  <span
+                    className="ml-1.5"
+                    style={{ color: 'hsl(0, 0%, 52.3%)' }}
+                  >
+                    file
+                  </span>
+                </div>
+              </FormLabel>
+              <FormControl>
+                <Input
+                  type="file"
+                  id="source_image"
+                  onChange={(event) => handleFileUpload(event, 'source_pdf')}
+                />
+              </FormControl>
+              <FormDescription>
+                {/*Upload the source image, it can be video.mp4 or picture.png*/}
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="source_image"
