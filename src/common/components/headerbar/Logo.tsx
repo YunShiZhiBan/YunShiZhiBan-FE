@@ -8,7 +8,7 @@ const Logo = () => {
   return (
     <Link href="/" className="relative left-[2%]">
       <Image
-        src="/logo.png"
+        src="/images/logo.png"
         alt="logo"
         width={HEADER_BG_WIDTH}
         height={HEADER_BG_HEIGHT}

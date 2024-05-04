@@ -12,4 +12,5 @@ const Output: React.FC<OutputProps> = ({ value }) => {
     </div>
   );
 };
+
 export default Output;
