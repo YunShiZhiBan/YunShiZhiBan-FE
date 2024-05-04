@@ -17,7 +17,7 @@ const ImageSource: React.FC<ImageProps> = ({ type }) => {
               key={index}
               src={`/images/character/${image}`}
               alt={`Character ${index}`}
-              width={200}
+              width={290}
               height={200}
               loading="lazy"
             />
