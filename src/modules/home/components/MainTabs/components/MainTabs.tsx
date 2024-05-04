@@ -2,6 +2,7 @@ import { BookMarked, Bot, FileText, Play, Rocket } from 'lucide-react';
 
 import { Tab, Tabs } from '@/common/components/elements/Tabs';
 
+import Example from '../../Example';
 import Playground from '../../Playground';
 import Playground2 from '../../Playground2';
 import Resource from '../../Resource';
@@ -40,7 +41,7 @@ const MainTabs: React.FC = () => {
     {
       label: <TabLabel>用例</TabLabel>,
       labelIcon: <BookMarked size={16} />,
-      children: <>example</>,
+      children: <Example />,
     },
     {
       label: <TabLabel>README</TabLabel>,
